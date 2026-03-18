@@ -4,23 +4,441 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Introducción a los vectores en R
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Un vector es una estructura unidimensional que almacena varios elementos del mismo tipo. En R, los vectores son una de las bases del trabajo con datos y muchas funciones operan directamente sobre ellos.
 
 ```{r}
-1 + 1
+x <- c(2.5, 4.1, 7.8)
+z <- c("rojo", "verde", "azul")
+w <- c(TRUE, FALSE, TRUE)
+
+x
+z
+w
+
+class(x)
+class(z)
+length(w)
 ```
 
-You can add options to executable code like this
+::: callout-note
+## Ejercicio
+
+1.  Blala
+
+```{=html}
+<!-- -->
+```
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Creación de vectores
+
+Los vectores pueden crearse manualmente, mediante secuencias o repitiendo valores. Esto permite generar conjuntos de datos de manera rápida según lo que se necesite representar.
 
 ```{r}
-#| echo: false
-2 * 2
+a <- c(10, 20, 30, 40)
+b <- 1:10
+c1 <- seq(from = 0, to = 20, by = 5)
+d <- rep(3, times = 5)
+e <- rep(c("A", "B"), times = 3)
+
+a
+b
+c1
+d
+e
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Coerción de tipos
+
+En R, un vector debe contener elementos del mismo tipo. Cuando se mezclan números, texto o valores lógicos, R convierte los elementos a un tipo común.
+
+```{r}
+v1 <- c(1, 2, 3)
+v2 <- c(1, 2, "3")
+v3 <- c(TRUE, FALSE, 5)
+v4 <- c(TRUE, "hola", 8)
+
+v1
+v2
+v3
+v4
+
+class(v1)
+class(v2)
+class(v3)
+class(v4)
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Indexación de vectores
+
+La indexación permite extraer elementos específicos de un vector. Esto puede hacerse por posición, seleccionando varios índices o excluyendo algunos valores.
+
+```{r}
+x <- c(12, 25, 18, 30, 22)
+
+x[1]
+x[3]
+x[c(2, 4, 5)]
+x[-2]
+x[length(x)]
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Modificación de vectores
+
+Los vectores pueden modificarse después de haber sido creados. Se pueden reemplazar valores individuales, cambiar varios al mismo tiempo o agregar nuevos elementos.
+
+```{r}
+x <- c(5, 10, 15, 20)
+
+x[2] <- 99
+x
+
+x[c(1, 4)] <- c(100, 200)
+x
+
+x <- c(x, 300)
+x
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Operadores relacionales
+
+Los operadores relacionales permiten comparar elementos de un vector con un valor. El resultado de estas comparaciones es un vector lógico formado por `TRUE` y `FALSE`.
+
+```{r}
+x <- c(4, 7, 2, 9, 7)
+
+x == 7
+x != 7
+x > 5
+x < 5
+x >= 7
+x <= 4
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Filtrado con vectores lógicos
+
+Los resultados lógicos pueden utilizarse para seleccionar solo los elementos que cumplan una condición. Esta forma de filtrado es una de las más importantes en R.
+
+```{r}
+x <- c(4, 7, 2, 9, 7, 12)
+
+x[x > 5]
+x[x == 7]
+x[x > 5 & x < 10]
+x[x < 4 | x > 8]
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Operadores lógicos y pertenencia
+
+Los operadores lógicos permiten combinar condiciones, mientras que `%in%` sirve para verificar si ciertos elementos pertenecen a un conjunto de valores.
+
+```{r}
+x <- c(2, 4, 6, 8, 10, 12)
+
+x > 4 & x < 10
+x < 4 | x > 10
+!(x > 6)
+
+x %in% c(4, 10, 15)
+x[x %in% c(4, 10, 15)]
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## La función which()
+
+La función `which()` devuelve las posiciones de los elementos que cumplen una condición. Es útil cuando interesa identificar en qué lugar del vector aparece un valor.
+
+```{r}
+x <- c(15, 22, 18, 22, 10)
+
+which(x == 22)
+which(x > 15)
+which.max(x)
+which.min(x)
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Nombres en vectores
+
+Los elementos de un vector pueden recibir nombres para facilitar su identificación. Esto permite acceder a ellos no solo por posición, sino también por etiqueta.
+
+```{r}
+calificaciones <- c(90, 85, 78)
+names(calificaciones) <- c("Ana", "Luis", "Marta")
+
+calificaciones
+names(calificaciones)
+
+calificaciones["Luis"]
+
+names(calificaciones)[3] <- "Carlos"
+calificaciones
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Funciones útiles sobre vectores
+
+Existen funciones que permiten resumir el contenido de un vector, obtener estadísticas simples, ordenar valores o identificar elementos distintos.
+
+```{r}
+x <- c(8, 3, 10, 3, 5, 8, 12)
+
+length(x)
+sum(x)
+mean(x)
+min(x)
+max(x)
+
+sort(x)
+unique(x)
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Tablas de frecuencia con table()
+
+La función `table()` cuenta cuántas veces aparece cada valor dentro de un vector. Es especialmente útil cuando se trabaja con categorías o respuestas repetidas.
+
+```{r}
+frutas <- c("manzana", "pera", "manzana", "uva", "pera", "manzana")
+
+table(frutas)
+prop.table(table(frutas))
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Valores faltantes (NA)
+
+En R, los datos faltantes se representan con `NA`. Estos valores deben tratarse con cuidado porque afectan cálculos y comparaciones.
+
+```{r}
+x <- c(10, 20, NA, 40, 50)
+
+x
+is.na(x)
+
+mean(x)
+mean(x, na.rm = TRUE)
+
+sum(x)
+sum(x, na.rm = TRUE)
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Operaciones vectorizadas
+
+Muchas operaciones en R se aplican directamente a todos los elementos de un vector. Esto hace posible realizar cálculos de forma rápida y sencilla sin usar ciclos.
+
+```{r}
+x <- c(2, 4, 6, 8)
+y <- c(1, 1, 1, 1)
+
+x + 10
+x * 2
+x + y
+
+sqrt(x)
+log(x)
+round(x / 3, 2)
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Gráficos simples a partir de vectores
+
+Los vectores pueden utilizarse para construir gráficos básicos que permitan resumir y visualizar información. Dependiendo del tipo de vector, pueden elaborarse gráficos de puntos, histogramas o barras.
+
+```{r}
+x <- c(4, 7, 2, 9, 7, 12, 5)
+
+plot(x, type = "b", main = "Valores del vector", xlab = "Posición", ylab = "Valor")
+
+hist(x, main = "Histograma de x", xlab = "Valores")
+
+frutas <- c("manzana", "pera", "manzana", "uva", "pera", "manzana")
+barplot(table(frutas), main = "Frecuencia de frutas", ylab = "Conteo")
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
+
+## Actividad integradora
+
+```{r}
+
+```
+
+::: callout-note
+## Ejercicio
+
+Blabla
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    blabla
+    :::
+:::
