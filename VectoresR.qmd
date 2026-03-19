@@ -348,12 +348,30 @@ x[x %in% c(4, 10, 15)]
 ::: callout-note
 ## Ejercicio
 
-Blabla
+Observa el siguiente vector
+
+```{r}
+frutas <- c(
+  "pera", "Manzana", "Uva", "manzana", "Pera",
+  "uva", "manzana", "Piña", "pera", "manzana",
+  "Uva", "piña", "manzana", "pera", "uva",
+  "Manzana", "Pera", "manzana", "Uva", "pera"
+)
+```
+
+1.  Sin usar R, ¿Cuántas veces está escrita la palabra "Manzana"?
+2.  Que línea de código utilizarías para calcular la frecuencia de una fruta sin tomr en cuanta mayúsculas o minúsculas?
+
 
 1.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
 
-    blabla
+    1. La palabra "Manzana" está escrita dos veces, mientras que "manzana" está escrita 5 veces
+    
+    ```{r}
+    frutas %in% c("Manzana", "manzana")
+    ```
+
     :::
 :::
 
