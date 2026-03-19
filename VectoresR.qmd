@@ -8,9 +8,11 @@ editor: visual
 
 Un vector es una estructura unidimensional que almacena varios elementos del mismo tipo. En R, los vectores son una de las bases del trabajo con datos y muchas funciones operan directamente sobre ellos.
 
+Para crear un vector en R se utiliza la función `c()`, que significa combinar o concatenar.
+
 ```{r}
-x <- c(2.5, 4.1, 7.8)
-z <- c("rojo", "verde", "azul")
+x <- c(2, 8, 9.5, 16)
+z <- c("rojo", "verde", "azul", "pistache")
 w <- c(TRUE, FALSE, TRUE)
 
 x
@@ -19,57 +21,111 @@ w
 
 class(x)
 class(z)
-length(w)
+class(w)
+
+length(x)
 ```
 
 ::: callout-note
 ## Ejercicio
 
-1.  Blala
+Crea un vector con la función `length()` que contenga las longitudes de los objetos x, z y w
 
-```{=html}
-<!-- -->
-```
 1.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
 
-    blabla
+    ```{r}
+    c(
+     length(x),
+     length(z),
+     length(w)
+    )
+    ```
+    :::
+
+¿Cuál es el resultado de correr las siguientes líneas de código?
+
+1.  `c(x, z, w)`
+2.  `length( c(x, z, w) )`
+
+<!-- -->
+
+1.  ::: {.callout-tip collapse="true" icon="false"}
+    ## Solución
+
+    1.  `c(x, z, w)` combina los elementos de `x`, `z` y `w` en un solo vector.
+    2.  `length(c(x, z, w))` cuenta cuántos elementos tiene ese vector combinado.
     :::
 :::
 
 ## Creación de vectores
 
-Los vectores pueden crearse manualmente, mediante secuencias o repitiendo valores. Esto permite generar conjuntos de datos de manera rápida según lo que se necesite representar.
+Los vectores pueden crearse manualmente, mediante secuencias o repitiendo valores.
+
+-   `:` genera una secuencia de números consecutivos.
+-   `seq()` crea secuencias indicando inicio, fin e incremento.
+-   `rep()` repite un valor o un patrón.
 
 ```{r}
 a <- c(10, 20, 30, 40)
 b <- 1:10
-c1 <- seq(from = 0, to = 20, by = 5)
+c <- seq(from = 0, to = 20, by = 5)
 d <- rep(3, times = 5)
 e <- rep(c("A", "B"), times = 3)
 
 a
 b
-c1
+c
 d
 e
 ```
 
 ::: callout-note
-## Ejercicio
+## Ejercicios
 
-Blabla
+1.  Genera un vector con los números pares del 2 al 20 de dos maneras distintas.
 
-1.  ::: {.callout-tip collapse="true" icon="false"}
+2.  Crea un vector con el patrón `"control", "tratado"` repetido seis veces y determina cuántas observaciones contiene.
+
+3.  Construye un vector con los días de muestreo 0, 12, 24, 36 y 48. Después crea otro donde cada día aparezca dos veces.
+
+4.  Sin ejecutar primero, predice la diferencia entre `rep(1:3, times = 2)` y `rep(1:3, each = 2)`.
+
+5.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
 
-    blabla
+    ```{r}
+    # 1
+    pares1 <- seq(2, 20, by = 2)
+    pares2 <- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+
+    pares1
+    pares2
+
+    # 2
+    grupos <- rep(c("control", "tratado"), times = 6)
+    grupos
+    length(grupos)
+
+    # 3
+    dias <- c(0, 48, 12)
+    dias_rep <- rep(dias, each = 2)
+
+
+    dias
+    dias_rep
+
+    # 4
+    rep(1:3, times = 2)
+    rep(1:3, each = 2)
+
+    ```
     :::
 :::
 
 ## Coerción de tipos
 
-En R, un vector debe contener elementos del mismo tipo. Cuando se mezclan números, texto o valores lógicos, R convierte los elementos a un tipo común.
+En R, un vector debe contener elementos del mismo tipo.
 
 ```{r}
 v1 <- c(1, 2, 3)
@@ -88,50 +144,76 @@ class(v3)
 class(v4)
 ```
 
-::: callout-note
-## Ejercicio
+**De forma simplificada, la coerción sigue este orden:**
 
-Blabla
+1.  `character`
 
-1.  ::: {.callout-tip collapse="true" icon="false"}
-    ## Solución
+2.  `numeric`
 
-    blabla
-    :::
-:::
+3.  `logical`
+
+Esto significa que:
+
+1.  Si hay texto, todo el vector se convierte a `character`.
+
+2.  Si no hay texto, pero hay números, los valores lógicos se convierten a `numeric`.
+
+3.  Si todos los elementos son lógicos, el vector permanece como `logical`.
 
 ## Indexación de vectores
 
-La indexación permite extraer elementos específicos de un vector. Esto puede hacerse por posición, seleccionando varios índices o excluyendo algunos valores.
+La indexación permite acceder a elementos por posición. Se usan `[]`, `c()` para varias posiciones y `length()` para ubicar el último elemento.
 
 ```{r}
-x <- c(12, 25, 18, 30, 22)
-
+x <- LETTERS # letters para letras minúsculas
 x[1]
 x[3]
 x[c(2, 4, 5)]
 x[-2]
 x[length(x)]
+
+y <- c(12, 25, 18, 30, 22, 84)
+
+y[1]
+y[3]
+y[c(2, 4, 5)]
+y[-2]
+y[length(y)]
 ```
 
 ::: callout-note
-## Ejercicio
+## Ejercicios
 
-Blabla
+1.  Crea un vector con siete números distintos y extrae el segundo, el penúltimo y los elementos en las posiciones 1, 3 y 6.
 
-1.  ::: {.callout-tip collapse="true" icon="false"}
+2.  A partir del mismo vector, obtén todos los elementos excepto el cuarto y explica la diferencia entre índices positivos y negativos.
+
+3.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
 
-    blabla
+    ```{r}
+    # 1
+    x <- c(5, 8, 12, 3, 20, 7, 15)
+
+    x[2]
+    x[length(x) - 1]
+    x[c(1, 3, 6)]
+
+    # 2
+    x[-4]
+    #Los índices positivos seleccionan posiciones; los negativos excluyen posiciones.
+    ```
     :::
 :::
 
 ## Modificación de vectores
 
-Los vectores pueden modificarse después de haber sido creados. Se pueden reemplazar valores individuales, cambiar varios al mismo tiempo o agregar nuevos elementos.
+Los vectores pueden modificarse después de crearse. Se usa `[] <-` para reemplazar elementos y `c()` para agregar nuevos.
+
+Los elementos de un vector numérico pueden ordenarse de mayor a menor o viceversa con la función `sort()`
 
 ```{r}
-x <- c(5, 10, 15, 20)
+x <- c(20, 5, 15, 10)
 
 x[2] <- 99
 x
@@ -141,46 +223,52 @@ x
 
 x <- c(x, 300)
 x
+
+sort(x, decreasing = TRUE)
+sort(x, decreasing = FALSE)
 ```
 
 ::: callout-note
-## Ejercicio
+## Ejercicios
 
-Blabla
+1.  Cambia las reprobatorias por `NA` del siguiente vector: `cal <- c(5, 10, 8, 4, 9, 10, 6)`
 
-1.  ::: {.callout-tip collapse="true" icon="false"}
+2.  Sustituye el valor mínimo por `0` y el valor máximo por 100 a partir del siguiente vector:
+
+    ```{r}
+    temp <- c(18, -4, 27, 9, 0, 33, 14, -1, 22, 5, 30, 11, -7, 25, 3)
+    ```
+
+3.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
 
-    blabla
+    ```{r}
+    # 1
+    cal[c(1, 4)] <- NA
+
+    # 2
+    temp <- sort(temp, decreasing = FALSE)
+    temp[1] <- 0
+
+    temp[length(temp)] <- 100
+    ```
     :::
 :::
 
 ## Operadores relacionales
 
-Los operadores relacionales permiten comparar elementos de un vector con un valor. El resultado de estas comparaciones es un vector lógico formado por `TRUE` y `FALSE`.
+Los operadores relacionales comparan cada elemento de un vector con un valor. El resultado es un vector lógico.
 
 ```{r}
 x <- c(4, 7, 2, 9, 7)
 
-x == 7
-x != 7
-x > 5
-x < 5
-x >= 7
-x <= 4
+x == 7 # ¿Qué elementos del vector x son iguales a 7?
+x != 7 # ¿Qué elementos del vector x NO son iguales a 7?
+x > 5 # ¿Qué elementos del vector x son mayores a 7?
+x < 5 # ¿Qué elementos del vector x son menores a 7?
+x >= 7 # ¿Qué elementos del vector x son mayor igual a 7?
+x <= 4 # ¿Qué elementos del vector x son menor igual a 7?
 ```
-
-::: callout-note
-## Ejercicio
-
-Blabla
-
-1.  ::: {.callout-tip collapse="true" icon="false"}
-    ## Solución
-
-    blabla
-    :::
-:::
 
 ## Filtrado con vectores lógicos
 
@@ -189,21 +277,56 @@ Los resultados lógicos pueden utilizarse para seleccionar solo los elementos qu
 ```{r}
 x <- c(4, 7, 2, 9, 7, 12)
 
-x[x > 5]
+# ¿Qué elementos del vector x son mayores a 5?
+x > 5 # c(FALSE, TRUE, FALSE, TRUE, TRUE, TRUE)
+
+x[x > 5] # Solo toma en cuenta los elementos que digan TRUE y descartan los que digan FALSE
+
 x[x == 7]
-x[x > 5 & x < 10]
-x[x < 4 | x > 8]
+x[x > 5 & x < 10] # AND
+x[x < 4 | x > 8] # OR
 ```
 
 ::: callout-note
-## Ejercicio
+## Ejercicios
 
-Blabla
+A partir del siguiente vector:
 
-1.  ::: {.callout-tip collapse="true" icon="false"}
+```{r}
+n <- c(12, -7, 25, -3, 0, 18, -14, 9, -21, 6, -1, 30, -11, 4, -8, 17, -26, 13, -5, 22)
+```
+
+Calcula
+
+1.  La longitud de `n`
+
+2.  Cuántos elementos son mayores a 0
+
+3.  Cuántos elementos son menores o iguales a 0
+
+4.  Cuántos elementos están entre -10 y 10
+
+5.  Cuántos elementos son mayores a 15 o menores a -15
+
+6.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
 
-    blabla
+    ```{r}
+    # 1
+    length(n)
+
+    # 2
+    length( n[ n > 0 ] )
+
+    # 3
+    length( n[ n <= 0 ] )
+
+    # 4
+    length( n[ n > -10 & n < 10 ] )
+
+    # 5
+    length( n[ n > 15 | n < -15 ] )
+    ```
     :::
 :::
 
