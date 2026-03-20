@@ -70,7 +70,7 @@ length(x)
 ::: callout-note
 ## Ejercicios
 
-1.  Crea un vector con la función `length()` que contenga las longitudes de los objetos x, z y w
+1.  Crea un vector que contenga las longitudes de los objetos x, z y w
 
 ::: {.callout-tip collapse="true" icon="false"}
 ## Soluciones
@@ -204,7 +204,7 @@ Esto significa que:
 La indexación permite acceder a elementos por posición. Se usan `[]`, `c()` para varias posiciones y `length()` para ubicar el último elemento.
 
 ```{r}
-x <- LETTERS # letters para letras minúsculas
+x <- LETTERS # letters para letras mayúsculas
 x[1]
 x[3]
 x[c(2, 4, 5)]
