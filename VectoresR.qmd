@@ -86,12 +86,9 @@ c(
 
 2.  ¿Cuál es el resultado de correr las siguientes líneas de código?
 
-```{=html}
-<!-- -->
-```
-1.  `c(x, z, w)`
+`c(x, z, w)`
 
-2.  `length( c(x, z, w) )`
+`length( c(x, z, w) )`
 
 ::: {.callout-tip collapse="true" icon="false"}
 ## Soluciones
