@@ -1,43 +1,32 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+project:
+  type: book
+  output-dir: docs
+  
+execute: 
+  cache: false
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+book:
+  title: "VieRnes de Bioinformática"
+  author: 
+    - Emilio Ortiz-Avila
+  date: "11/18/2025"
+  page-navigation: true
+  chapters:
+    - VectoresR.qmd
+  # Information
+  repo-url: https://github.com/Emilio-O/Viernes-Bioinfo-2026 # link de Github
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+format:
+  html:
+    toc-depth: 4
+    number-depth: 3
+  # Boton para cambiar tema de oscuro a claro
+    theme:
+      light: minty
+      dark: darkly
+    code-fold: show # Ocultar codigo
+    code-copy: true # Copy button
+    freeze: false  # Desactivar congelamiento
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+editor: visual
