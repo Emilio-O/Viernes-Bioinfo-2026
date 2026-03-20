@@ -360,8 +360,8 @@ frutas <- c(
 ```
 
 1.  Sin usar R, ¿Cuántas veces está escrita la palabra "Manzana"?
-2.  Que línea de código utilizarías para calcular la frecuencia de una fruta sin tomr en cuanta mayúsculas o minúsculas?
-
+2.  Escribe un código para contar cuantas veces aparece una fruta sin importar mayúscula inicial
+3.  Extrae del vector solo los elementos que sean "Pera", "pera", "Uva" o "uva".
 
 1.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
@@ -369,7 +369,14 @@ frutas <- c(
     1. La palabra "Manzana" está escrita dos veces, mientras que "manzana" está escrita 5 veces
     
     ```{r}
-    frutas %in% c("Manzana", "manzana")
+    # 2
+    length( frutas[ frutas %in% c("Manzana", "manzana") ] )
+
+    # 3
+    frutas[frutas %in% c("Pera", "pera", "Uva", "uva")]
+
+    # 4
+    length(frutas[!(frutas %in% c("Manzana", "manzana"))])
     ```
 
     :::
@@ -391,12 +398,30 @@ which.min(x)
 ::: callout-note
 ## Ejercicio
 
-Blabla
+Observa el siguiente vector:
+```{r}
+x <- c(10, 15, 20, 15, 8, 20, 15, 25, 30, 12)
+```
+1.	Escribe una línea para obtener las posiciones donde aparece 15.
+2.	Escribe una línea para obtener las posiciones de los valores mayores que 18.
+3.	Escribe una línea para obtener las posiciones de los valores que sean 15 o 20.
+4.	Escribe una línea para obtener las posiciones de los valores mayores que 10 y menores que 25.
 
 1.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
-
-    blabla
+    ```{r}
+    # 1
+    which(x == 15)
+    
+    # 2
+    which(x > 18)
+    
+    # 3
+    which(x %in% c(15, 20))
+    
+    # 4
+    which(x > 10 & x < 25)
+    ```
     :::
 :::
 
@@ -405,8 +430,8 @@ Blabla
 Los elementos de un vector pueden recibir nombres para facilitar su identificación. Esto permite acceder a ellos no solo por posición, sino también por etiqueta.
 
 ```{r}
-calificaciones <- c(90, 85, 78)
-names(calificaciones) <- c("Ana", "Luis", "Marta")
+calificaciones <- c(90, 85, 78, 92, 88)
+names(calificaciones) <- c("Ana", "Luis", "Marta", "Diego", "Sofia")
 
 calificaciones
 names(calificaciones)
@@ -420,12 +445,18 @@ calificaciones
 ::: callout-note
 ## Ejercicio
 
-Blabla
+Observa el siguiente vector:
+```{r}
+edades <- c(19, 22, 21, 20, 23, 18, 24, 26, 19, 22)
+names(edades) <- c("Elena", "Marco", "Julia", "Pedro", "Raul", "Laura", "Diego", "Sonia", "Miguel", "Paula")
+```
 
 1.  ::: {.callout-tip collapse="true" icon="false"}
     ## Solución
-
-    blabla
+    1.	Escribe una línea para mostrar la edad de "Diego".
+	  2.	Escribe una línea para obtener solo los nombres del vector.
+	  3.	Cambia el nombre "Raul" por "Raúl".
+	  4.	Cambia la edad de "Paula" a 25.
     :::
 :::
 
